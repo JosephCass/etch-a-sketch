@@ -1,4 +1,6 @@
-let gridContainer = document.querySelector(".grid-container");
+let gridContainer = document.querySelector(".grid");
+let gridSizeSlider = document.querySelector(".grid-size-slider");
+let gridSizeLabel = document.querySelector(".grid-size-label");
 
 function makeRows(rows, cols) {
   gridContainer.style.setProperty("--grid-rows", rows);
@@ -8,14 +10,26 @@ function makeRows(rows, cols) {
     // cell.innerText = c + 1;
     gridContainer.appendChild(cell).className = "grid-item";
   }
+  let gridItem = document.querySelectorAll(".grid-item");
+
+  gridItem.forEach(function (item) {
+    item.addEventListener("mouseover", function (e) {
+      e.target.style.backgroundColor = "green";
+    });
+  });
 }
 
-makeRows(16, 16);
+let gridSize = 33;
+gridSizeLabel.textContent = `${gridSizeSlider.value} X ${gridSizeSlider.value}`;
 
-let gridItem = document.querySelectorAll(".grid-item");
+makeRows(gridSize, gridSize);
 
-gridItem.forEach(function (item) {
-  item.addEventListener("mouseover", function (e) {
-    e.target.style.backgroundColor = "green";
-  });
+gridSizeSlider.addEventListener("mousemove", function () {
+  gridSizeLabel.textContent = `${gridSizeSlider.value} X ${gridSizeSlider.value}`;
+});
+
+gridSizeSlider.addEventListener("change", function () {
+  gridSize = gridSizeSlider.value;
+  gridContainer.innerHTML = "";
+  makeRows(gridSize, gridSize);
 });
