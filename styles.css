@@ -70,6 +70,14 @@ body {
   font-family: "Roboto";
 }
 
+.color-picker {
+}
+
+.rainbow-btn {
+  padding: 0.5em;
+  font-family: "Roboto", sans-serif;
+  font-size: 1.5em;
+}
 .grid-size-label {
   color: white;
 }
